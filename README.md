@@ -28,6 +28,12 @@ Postgres + Auth + Row Level Security + Storage + Edge Functions + Realtime + CLI
 - `references/reference.md` — 9 大區完整程式碼（supabase-js v2 為主、supabase-py 為輔）
 - 來源：[supabase/supabase](https://github.com/supabase/supabase) 官方文件萃取
 
+### 🟣 comfyui — 節點式 AI 生成引擎實作指南
+用 ComfyUI 跑 SD/SDXL/SD3/Flux 影像與 Wan/Hunyuan/LTX 影片：安裝啟動、節點圖原理、workflow JSON（UI vs API 格式）、HTTP/WebSocket API 程式化跑圖、自訂節點開發、Manager/comfy-cli 生態。對接數位人/對嘴影片技術棧（RunComfy）。
+- `references/reference.md` — 7 大區完整程式碼與 API 端點
+- `scripts/` — repo 官方 API 範例腳本（basic / websockets，可直接改 prompt+seed 套用）
+- 來源：[comfyanonymous/ComfyUI](https://github.com/comfyanonymous/ComfyUI)（Comfy-Org）
+
 ## 安裝（換新電腦時的地基）
 
 short-video 需要這些工具。Ubuntu/Linux：
@@ -45,4 +51,4 @@ fc-cache -f
 > 各 `SKILL.md` 內的絕對路徑（venv、字型）是以本機 `/home/riley` 為準，換機請對應調整。
 
 ## 使用
-把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`，或在對應情境自動觸發。
+把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`、`/comfyui`，或在對應情境自動觸發。
