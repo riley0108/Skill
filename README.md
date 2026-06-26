@@ -16,6 +16,18 @@
 - `scripts/make_titlecard.py` — Pillow 產標題字卡（取代 ImageMagick）
 - 引擎：ffmpeg + faster-whisper + auto-editor + Pillow + yt-dlp
 
+### 🎬 video-autopilot — 影片自動化方法論 + 工具庫
+從「一句題目」到「完整 YouTube／短影音發佈套件」的端到端流程：腳本＋packaging（標題/縮圖/描述）＋發佈計畫＋raw 素材自動 audit＋CapCut/ffmpeg 剪輯路徑＋發佈後學 pattern 優化。上游策略層，跟 `short-video`（執行層）互補。
+- `knowledge/` — M1-M102 避坑大全、YouTube 演算法、Shorts/Reels SOP、跨平台心法、CapCut SOP（21 篇）
+- `src/` — `silent_vlog_maker`（純 ffmpeg pipeline、audit、場景分群、多平台 encode）＋ `capcut_helpers`（草稿 I/O、花字、交付 QA）
+- `templates/` / `SETUP.md` — 填自己的 voice/品牌/演算法 profile（空白模板，資料留本地）
+- 來源：[Hao0321/video-autopilot-kit](https://github.com/Hao0321/video-autopilot-kit)（MIT）
+
+### 🟢 supabase — 用 Supabase 蓋 app 的實作指南
+Postgres + Auth + Row Level Security + Storage + Edge Functions + Realtime + CLI 本地開發的可複製貼上參考；含 2026 新金鑰制、`@supabase/ssr`、Supavisor pooling 等近期變動與常見雷。
+- `references/reference.md` — 9 大區完整程式碼（supabase-js v2 為主、supabase-py 為輔）
+- 來源：[supabase/supabase](https://github.com/supabase/supabase) 官方文件萃取
+
 ## 安裝（換新電腦時的地基）
 
 short-video 需要這些工具。Ubuntu/Linux：
@@ -33,4 +45,4 @@ fc-cache -f
 > 各 `SKILL.md` 內的絕對路徑（venv、字型）是以本機 `/home/riley` 為準，換機請對應調整。
 
 ## 使用
-把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`，或在對應情境自動觸發。
+把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`，或在對應情境自動觸發。
