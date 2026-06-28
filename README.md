@@ -34,6 +34,23 @@ Postgres + Auth + Row Level Security + Storage + Edge Functions + Realtime + CLI
 - `scripts/` — repo 官方 API 範例腳本（basic / websockets，可直接改 prompt+seed 套用）
 - 來源：[comfyanonymous/ComfyUI](https://github.com/comfyanonymous/ComfyUI)（Comfy-Org）
 
+### 🖥️ slidev — 開發者的 markdown 投影片
+用 Slidev（Vite+Vue+UnoCSS）把 `slides.md` 變簡報：程式碼逐行高亮/點開、Monaco、Mermaid、LaTeX、layouts、點擊動畫、主題、匯出 PDF/PPTX、build 部署、presenter 模式。
+- `references/reference.md` — CLI / slides.md 語法 / layouts / 動畫 / 匯出 8 大區
+- 來源：[slidevjs/slidev](https://github.com/slidevjs/slidev)（sli.dev）
+
+### 📊 pptx-generator — 程式/AI 產 PowerPoint
+兩條路：A) python-pptx +（已內附）Office-PowerPoint MCP server 32 工具，程式化建/改 .pptx；B) ppt-master AI-SVG pipeline，從文件生精美原生 .pptx。
+- `mcp-server/` — 內附完整 MCP server（封存凍結、可直接跑）
+- `references/` — python-pptx 速查+32 工具、ppt-master pipeline、簡報工具總覽
+- 來源：[GongRzhe/Office-PowerPoint-MCP-Server](https://github.com/GongRzhe/Office-PowerPoint-MCP-Server)、[hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)、[runablehq/Awesome-presentation-tools](https://github.com/runablehq/Awesome-presentation-tools)
+
+### 🪧 academic-poster — 學術研究海報
+做會議海報：格式選擇（LaTeX/PowerPoint/向量軟體）、尺寸與 PowerPoint 大尺寸設定、版面動線、字級字數、配色色盲友善、高解析圖匯出、#betterposter 大結論法、列印前置。
+- `templates/` — beamerposter / tikzposter LaTeX 起始範本
+- `references/reference.md` — 8 大區完整指南
+- 來源：[SuperBruceJia/Poster_Template](https://github.com/SuperBruceJia/Poster_Template)、[MIT-BECL/Poster_Resources](https://github.com/MIT-BECL/Poster_Resources)
+
 ## 安裝（換新電腦時的地基）
 
 short-video 需要這些工具。Ubuntu/Linux：
@@ -51,4 +68,4 @@ fc-cache -f
 > 各 `SKILL.md` 內的絕對路徑（venv、字型）是以本機 `/home/riley` 為準，換機請對應調整。
 
 ## 使用
-把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`、`/comfyui`，或在對應情境自動觸發。
+把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`、`/comfyui`、`/slidev`、`/pptx-generator`、`/academic-poster`，或在對應情境自動觸發。

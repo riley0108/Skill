@@ -1,0 +1,25 @@
+% tikzposter 學術海報骨架 — A0 直式雙欄
+% 編譯：pdflatex tikzposter_skeleton.tex
+% 換主題改 \usetheme{...}：Default/Board/Rays/Basic/Simple/Envelope/Wave
+\documentclass[25pt,a0paper,portrait,margin=0mm,innermargin=15mm,
+               blockverticalspace=15mm,colspace=15mm,subcolspace=8mm]{tikzposter}
+\usepackage{amsmath,amssymb,graphicx}
+\usetheme{Default}
+
+\title{My Research Poster Title}
+\author{First Author \and Second Author}
+\institute{Department, University}
+
+\begin{document}
+\maketitle
+\begin{columns}
+  \column{0.5}
+  \block{Introduction}{研究動機與問題。}
+  \block{Methods}{方法說明，含公式：$\mathcal{L}=\sum_i \ell_i$.}
+
+  \column{0.5}
+  \block{Results}{\includegraphics[width=\linewidth]{results.pdf}}
+  \block{Conclusion}{主要 takeaway 寫這。}
+\end{columns}
+% \column{<fraction>} 各欄寬度加總約 1.0；\block{標題}{內文} 是核心單位；\note{} 加便利貼註解
+\end{document}

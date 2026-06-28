@@ -1,0 +1,50 @@
+% beamerposter 學術海報骨架 — A0 橫式三欄
+% 編譯：pdflatex beamerposter_skeleton.tex（或 latexmk -pdf）
+% 換主題改 \usetheme{...}；字太小調 beamerposter 的 scale
+\documentclass[final]{beamer}
+\usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usetheme{Berlin}          % 可換：Madrid / Frankfurt / CambridgeUS ...
+
+\title{My Research Poster Title}
+\author{First Author \and Second Author}
+\institute{Department, University}
+\date{}
+
+\begin{document}
+\begin{frame}{}                         % 單一 frame = 整張海報
+  \begin{columns}[t]                     % 頂端對齊的欄
+    %------- 第 1 欄 -------
+    \begin{column}{.32\linewidth}
+      \begin{block}{Introduction}
+        \begin{itemize}
+          \item 研究動機 / 問題
+          \item 關鍵相關工作
+        \end{itemize}
+      \end{block}
+      \begin{block}{Methods}
+        方法描述；公式原生渲染：
+        \[ \mathcal{L} = \frac{1}{N}\sum_i \ell(y_i,\hat{y}_i) \]
+      \end{block}
+    \end{column}
+    %------- 第 2 欄 -------
+    \begin{column}{.32\linewidth}
+      \begin{block}{Results}
+        \begin{figure}
+          \includegraphics[width=\linewidth]{results.pdf}  % 用向量 PDF
+        \end{figure}
+      \end{block}
+    \end{column}
+    %------- 第 3 欄 -------
+    \begin{column}{.32\linewidth}
+      \begin{block}{Conclusion}
+        一兩行講清楚主要 takeaway。
+      \end{block}
+      \begin{block}{References}
+        \footnotesize \bibliographystyle{plain}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\end{document}
