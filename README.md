@@ -51,6 +51,18 @@ Postgres + Auth + Row Level Security + Storage + Edge Functions + Realtime + CLI
 - `references/reference.md` — 8 大區完整指南
 - 來源：[SuperBruceJia/Poster_Template](https://github.com/SuperBruceJia/Poster_Template)、[MIT-BECL/Poster_Resources](https://github.com/MIT-BECL/Poster_Resources)
 
+### 🅰️ Anthropic 官方精選 skills（17 個，已收錄）
+直接 vendor 自 [anthropics/skills](https://github.com/anthropics/skills)（多為 Apache-2.0；docx/pdf/pptx/xlsx 為 source-available 的 production 文件能力）。自包含、開箱即用：
+- **文件能力**：`docx`、`pdf`、`pptx`、`xlsx` — 建立/讀取/編輯 Word/PDF/PowerPoint/Excel
+- **開發/建構**：`mcp-builder`（建 MCP server）、`skill-creator`（建/優化 skill）、`web-artifacts-builder`（React/Tailwind/shadcn 複雜 artifact）、`webapp-testing`（Playwright 測試）、`claude-api`（Claude API 參考）
+- **設計/視覺**：`canvas-design`（海報/視覺藝術 png/pdf）、`frontend-design`、`theme-factory`（10 套主題）、`algorithmic-art`（p5.js 生成藝術）、`brand-guidelines`、`slack-gif-creator`
+- **溝通/文件協作**：`internal-comms`、`doc-coauthoring`
+
+### 🗂️ skills-catalog — 外部 skill 目錄索引
+查找並「按需安裝」量太大、未整批 vendor 的兩大集合：[knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins)（212 個企業知識工作 skill，18 領域）與 [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)（~1205 條各廠商 skill）。
+- `references/` — 兩份完整索引（名稱+用途 / 廠商分類+數量）
+- SKILL.md 教你怎麼 grep 找、怎麼把單一 skill 裝進 `~/.claude/skills/`
+
 ## 安裝（換新電腦時的地基）
 
 short-video 需要這些工具。Ubuntu/Linux：
@@ -68,4 +80,4 @@ fc-cache -f
 > 各 `SKILL.md` 內的絕對路徑（venv、字型）是以本機 `/home/riley` 為準，換機請對應調整。
 
 ## 使用
-把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`、`/comfyui`、`/slidev`、`/pptx-generator`、`/academic-poster`，或在對應情境自動觸發。
+把整個資料夾放到 `~/.claude/skills/`，重開 Claude Code 即可用 `/danruwu`、`/short-video`、`/video-autopilot`、`/supabase`、`/comfyui`、`/slidev`、`/pptx-generator`、`/academic-poster`、`/skills-catalog`、以及 17 個 Anthropic 官方 skill（`/docx`、`/pdf`、`/pptx`、`/xlsx`、`/mcp-builder`、`/skill-creator`、`/canvas-design`…），或在對應情境自動觸發。
