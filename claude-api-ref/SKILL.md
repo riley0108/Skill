@@ -1,11 +1,11 @@
 ---
-name: claude-api
+name: claude-api-ref
 description: |-
-  Reference for the Claude API / Anthropic SDK — model ids, pricing, params, streaming, tool use, MCP, agents, caching, token counting, model migration.
-  TRIGGER — read BEFORE opening the target file; don't skip because it "looks like a one-liner" — whenever: the prompt names Claude/Anthropic in any form (Claude, Anthropic, Fable, Opus, Sonnet, Haiku, `anthropic`, `@anthropic-ai`, `claude-*`, `us.anthropic.*`, `[1m]`); the user asks about an LLM (pricing/model choice/limits/caching) — never answer from memory; OR the task is LLM-shaped with provider unstated (agent/MCP/tool-definition/multi-agent/RAG/LLM-judge/computer-use; generate/summarize/extract/classify/rewrite/converse over NL; debugging refusals/cutoffs/streaming/tool-calls/tokens).
-  SKIP only when another provider is being worked on (overrides all triggers): OpenAI/GPT/Gemini/Llama/Mistral/Cohere/Ollama named in the query; OR `grep -rE 'openai|langchain_openai|google.generativeai|genai|mistralai|cohere|ollama'` over the project hits (run this grep FIRST if no provider named — don't Read the file).
+  可攜備份版的 Claude API / Anthropic SDK 多語言參考（python/typescript/go/java/php/ruby/csharp/curl + managed-agents 程式碼）。內容等同 Claude Code 內建的 `claude-api` skill（出處同為 anthropics/skills/claude-api）。⚠️ 平常的自動觸發交給內建的 `claude-api`；這份是**換到沒有內建 claude-api 的環境時**的可攜備份，請「明確指名 /claude-api-ref」或在內建版不存在時才用。內容涵蓋 model ids、pricing、params、streaming、tool use、MCP、agents、caching、token counting、model migration。
 license: Complete terms in LICENSE.txt
 ---
+
+> 📌 **這份是可攜備份副本**：內容與 Claude Code 內建的 `claude-api` skill 相同（同源 anthropics/skills/claude-api），保留在本 repo 是為了換機/無內建時仍可用。**同機有內建版時，自動觸發走內建那份**，避免兩個同源 skill 互相搶觸發。需要時用 `/claude-api-ref` 明確指名本份。
 
 # Building LLM-Powered Applications with Claude
 

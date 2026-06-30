@@ -54,7 +54,8 @@ Postgres + Auth + Row Level Security + Storage + Edge Functions + Realtime + CLI
 ### 🅰️ Anthropic 官方精選 skills（17 個，已收錄）
 直接 vendor 自 [anthropics/skills](https://github.com/anthropics/skills)（多為 Apache-2.0；docx/pdf/pptx/xlsx 為 source-available 的 production 文件能力）。自包含、開箱即用：
 - **文件能力**：`docx`、`pdf`、`pptx`、`xlsx` — 建立/讀取/編輯 Word/PDF/PowerPoint/Excel
-- **開發/建構**：`mcp-builder`（建 MCP server）、`skill-creator`（建/優化 skill）、`web-artifacts-builder`（React/Tailwind/shadcn 複雜 artifact）、`webapp-testing`（Playwright 測試）、`claude-api`（Claude API 參考）
+- **開發/建構**：`mcp-builder`（建 MCP server）、`skill-creator`（建/優化 skill）、`web-artifacts-builder`（React/Tailwind/shadcn 複雜 artifact）、`webapp-testing`（Playwright 測試）
+- **Claude API 參考**：`claude-api-ref` — 多語言 Claude API/SDK 參考。⚠️ **改過名**：Claude Code 已**內建**同源的 `claude-api` skill，為免兩個同名互搶自動觸發，本 repo 這份改名為 `claude-api-ref` 並調成**被動觸發**（換機/無內建時的可攜備份，平常自動觸發走內建版，需要本份用 `/claude-api-ref` 指名）
 - **設計/視覺**：`canvas-design`（海報/視覺藝術 png/pdf）、`frontend-design`、`theme-factory`（10 套主題）、`algorithmic-art`（p5.js 生成藝術）、`brand-guidelines`、`slack-gif-creator`
 - **溝通/文件協作**：`internal-comms`、`doc-coauthoring`
 
