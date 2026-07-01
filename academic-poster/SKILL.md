@@ -1,6 +1,6 @@
 ---
 name: academic-poster
-description: 做學術／科學研究海報（conference poster）。涵蓋格式選擇（LaTeX beamerposter/tikzposter vs PowerPoint vs Illustrator/Inkscape）、標準尺寸與 PowerPoint 自訂大尺寸設定、版面與閱讀動線、字級與字數準則、配色與色盲友善、高解析圖匯出（向量 PDF/SVG、matplotlib dpi）、Mike Morrison 的 #betterposter「大結論」設計、列印前置（嵌字型/出 PDF/出血邊界）。當使用者要「做研究海報、會議海報、CVPR/ECCV poster、48x36 或 A0 海報、beamerposter/tikzposter 範本、把論文變海報、海報設計建議」時使用。附 LaTeX 起始範本。
+description: 專做「學術／科學研究會議海報」（academic/scientific conference research poster，大尺寸列印如 A0、48x36）。涵蓋 LaTeX beamerposter/tikzposter、PowerPoint 大尺寸設定、多欄版面與閱讀動線、字級字數準則、色盲友善配色、高解析「資料圖表」匯出（向量 PDF/SVG、matplotlib dpi）、Mike Morrison 的 #betterposter「大結論」設計、送印前置（嵌字型/出 PDF/出血）。當使用者要「研究/會議海報、CVPR/ECCV poster、把論文變海報、beamerposter/tikzposter 範本、A0/48x36 學術海報」時用。⚠️ 邊界：一般「藝術／行銷／活動海報」或要產 .png/.pdf 視覺設計作品，改用 `canvas-design` skill；本 skill 專攻帶研究內容、資料圖、大尺寸送印的學術海報。附 LaTeX 起始範本。
 ---
 
 # 🪧 學術研究海報（Academic Poster）

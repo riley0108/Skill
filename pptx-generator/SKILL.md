@@ -1,6 +1,6 @@
 ---
 name: pptx-generator
-description: 用程式/AI 產生與編輯 PowerPoint (.pptx) 簡報。兩條路：(A) python-pptx + 內附的 Office-PowerPoint MCP server（32 個工具：建簡報、加投影片/文字/項目符號/表格/圖表/圖片/形狀、套專業設計與主題、字型/超連結/轉場、從模板生成），適合程式化、可腳本化、批量、改既有 .pptx；(B) ppt-master AI-SVG pipeline，從 PDF/DOCX/網址/markdown 生出精美原生可編輯 .pptx（多角色協作、SVG 逐頁手刻、講者備註可轉語音）。當使用者要「做 PPT/簡報、生成 .pptx、改現有投影片、加圖表/表格、套模板、把文件轉成簡報、python-pptx」時使用。附簡報工具總覽。
+description: 用「特定兩套工具鏈」產生 PowerPoint (.pptx)：(A) 本 skill 內附的 Office-PowerPoint MCP server（32 工具、python-pptx 驅動）——要用 MCP 工具、python-pptx 腳本化、批量自動化產/改 .pptx、加圖表表格、套模板時用；(B) ppt-master AI-SVG pipeline——要把 PDF/DOCX/網址/markdown 生成「設計精美」的原生 .pptx、或要設計感簡報時用。也附簡報工具總覽。⚠️ 邊界：一般單純「建立/讀取/編輯/抽取文字/合併分割 .pptx」而**不指定用這兩套工具**時，改用 Anthropic 官方 `pptx` skill（那才是通用 .pptx 能力）；本 skill 專門用於「MCP server / python-pptx 批量腳本 / ppt-master 精美生成」這三種情境。
 ---
 
 # 📊 PowerPoint (.pptx) 生成與編輯
