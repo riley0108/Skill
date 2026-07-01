@@ -1,6 +1,24 @@
 # Riley 的 Claude Code Skills
 
-我的 Claude Code 技能集合（放在 `~/.claude/skills/`）。每個資料夾是一個 skill，含 `SKILL.md`（帶 frontmatter，可被自動觸發）。
+我的 Claude Code 技能集合（放在 `~/.claude/skills/`）。每個 skill 是一個含 `SKILL.md`（帶 frontmatter，可被自動觸發）的資料夾。
+
+## 📁 目錄結構（分類資料夾 + 頂層 symlink）
+
+Skill 依用途分成 7 個**分類資料夾**，方便瀏覽管理：
+
+| 分類 | 內容 |
+|---|---|
+| `documents/` | docx · pdf · pptx · xlsx |
+| `presentation/` | slidev · pptx-generator · academic-poster |
+| `media/` | short-video · video-autopilot · comfyui |
+| `design/` | canvas-design · frontend-design · theme-factory · algorithmic-art · brand-guidelines · slack-gif-creator |
+| `development/` | supabase · mcp-builder · web-artifacts-builder · webapp-testing · claude-api-ref |
+| `writing/` | internal-comms · doc-coauthoring · danruwu |
+| `meta/` | skill-creator · skills-catalog |
+
+> ⚠️ **為什麼頂層還有一堆同名 symlink？** Claude Code 偵測 skill 時**只掃 `~/.claude/skills/` 一層**，不會遞迴進子資料夾。所以真檔放分類資料夾，頂層再放**同名相對 symlink** 指回去（例如 `short-video → media/short-video`）——這樣分類清楚、又保留自動偵測與 `/skill` 功能。**兩者缺一不可**：symlink 提供功能、分類資料夾提供組織。
+>
+> **換新電腦 clone 時**：先確保 git 會還原 symlink（`git config --global core.symlinks true`，macOS/Linux 預設開），再 `git clone` 到 `~/.claude/skills/` 即可，symlink 會自動生效。新增 skill 時：真資料夾建在對應分類下，並在頂層 `ln -s <分類>/<名> <名>` 補一個 symlink。
 
 ## 技能清單
 
