@@ -14,7 +14,7 @@ Skill 依用途分成 7 個**分類資料夾**，方便瀏覽管理：
 | `design/` | canvas-design · frontend-design · theme-factory · algorithmic-art · brand-guidelines · slack-gif-creator |
 | `development/` | supabase · mcp-builder · web-artifacts-builder · webapp-testing · claude-api-ref |
 | `writing/` | internal-comms · doc-coauthoring · danruwu |
-| `meta/` | skill-creator · skills-catalog |
+| `meta/` | skill-creator · skills-catalog · loop-engineering |
 
 > ⚠️ **為什麼頂層還有一堆同名 symlink？** Claude Code 偵測 skill 時**只掃 `~/.claude/skills/` 一層**，不會遞迴進子資料夾。所以真檔放分類資料夾，頂層再放**同名相對 symlink** 指回去（例如 `short-video → media/short-video`）——這樣分類清楚、又保留自動偵測與 `/skill` 功能。**兩者缺一不可**：symlink 提供功能、分類資料夾提供組織。
 >
@@ -81,6 +81,12 @@ Postgres + Auth + Row Level Security + Storage + Edge Functions + Realtime + CLI
 查找並「按需安裝」量太大、未整批 vendor 的兩大集合：[knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins)（212 個企業知識工作 skill，18 領域）與 [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)（~1205 條各廠商 skill）。
 - `references/` — 兩份完整索引（名稱+用途 / 廠商分類+數量）
 - SKILL.md 教你怎麼 grep 找、怎麼把單一 skill 裝進 `~/.claude/skills/`
+
+### 🔁 loop-engineering — 讓自動化自檢、自限、可靠
+把「一句句盯 prompt」升級成「會觸發、自檢、報告的迴圈」。三鐵律：Grade before done · Budget before start · Report always。對接庫巴/行銷輪播/n8n/看門狗的落地做法。
+- `scripts/verified_run.py` — 驗證迴圈 + budget（worker→checker→重試→escalate，零相依可跑）
+- `references/patterns.md` — 四層迴圈、Claude Code 原語對照、六大失敗模式
+- 萃取自 [hardness1020/awesome-agent-architecture](https://github.com/hardness1020/awesome-agent-architecture)（MIT）
 
 ## 安裝（換新電腦時的地基）
 
