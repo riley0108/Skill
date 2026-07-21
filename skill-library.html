@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html,body{margin:0;padding:0;background:#EFF2F0;}
+  @media (prefers-color-scheme: dark){ html,body{background:#131C1B;} }
+</style>
+</head>
+<body>
+<title>Riley 的技能庫 · Claude Code Skills</title>
+
+<style>
+  /* ── tokens ─────────────────────────────────────────── */
+  :root{
+    --ink:#16201F; --surface:#FFFFFF; --edge:#D8DEDB;
+    --ground:#EFF2F0; --text:#16201F; --muted:#66736F;
+    --brass:#8A5F1B; --patina:#3E6E64; --shadow:rgba(22,32,31,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#131C1B; --surface:#1B2624; --edge:#2C3A37;
+      --text:#E6ECE9; --muted:#8A9793;
+      --brass:#D2A055; --patina:#6FAA9C; --shadow:rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131C1B; --surface:#1B2624; --edge:#2C3A37;
+    --text:#E6ECE9; --muted:#8A9793;
+    --brass:#D2A055; --patina:#6FAA9C; --shadow:rgba(0,0,0,.3);
+  }
+  :root[data-theme="light"]{
+    --ground:#EFF2F0; --surface:#FFFFFF; --edge:#D8DEDB;
+    --text:#16201F; --muted:#66736F;
+    --brass:#8A5F1B; --patina:#3E6E64; --shadow:rgba(22,32,31,.07);
+  }
+
+  /* 中文一律無襯線；等寬只給 Latin 路徑 */
+  .wrap{
+    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+    background:var(--ground); color:var(--text);
+    margin:0 auto; padding:clamp(28px,5vw,64px) clamp(18px,4vw,40px) 72px;
+    max-width:1120px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{
+    font-family:ui-monospace,SFMono-Regular,Menlo,"Cascadia Mono",monospace;
+    font-variant-ligatures:none;
+  }
+
+  /* ── header ─────────────────────────────────────────── */
+  .head{ display:flex; flex-direction:column; gap:18px; margin-bottom:14px; }
+  .eyebrow{
+    font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--patina); font-weight:600;
+  }
+  .title{
+    font-family:"Helvetica Neue","Avenir Next",system-ui,sans-serif;
+    font-size:clamp(34px,6vw,58px); font-weight:800; letter-spacing:-.03em;
+    line-height:1.02; margin:0; text-wrap:balance;
+  }
+  .title em{ font-style:normal; color:var(--brass); }
+  .lede{ max-width:62ch; color:var(--muted); font-size:15.5px; margin:0; }
+
+  /* 簽名元素：symlink 解析線 — 這是本 repo 真實架構 */
+  .arch{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    background:var(--surface); border:1px solid var(--edge);
+    border-left:3px solid var(--brass);
+    padding:14px 16px; font-size:13px; color:var(--muted);
+  }
+  .arch b{ color:var(--text); font-weight:600; }
+  .link-demo{ display:inline-flex; align-items:center; gap:8px; font-size:12.5px; }
+  .link-demo .to{ color:var(--brass); font-weight:700; }
+
+  .counts{ display:flex; flex-wrap:wrap; gap:26px; padding:2px 0 6px; }
+  .count{ display:flex; flex-direction:column; gap:1px; }
+  .count .n{
+    font-family:"Helvetica Neue","Avenir Next",system-ui,sans-serif;
+    font-size:26px; font-weight:800; letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums; line-height:1;
+  }
+  .count .l{ font-size:11.5px; color:var(--muted); letter-spacing:.04em; }
+
+  .rule{ height:1px; background:var(--edge); margin:26px 0 0; border:0; }
+
+  /* ── shelves ────────────────────────────────────────── */
+  .shelf{ margin-top:34px; }
+  .shelf-head{
+    display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    padding-bottom:10px; border-bottom:1px solid var(--edge); margin-bottom:16px;
+  }
+  .slug{ font-size:13px; color:var(--patina); font-weight:600; letter-spacing:.02em; }
+  .zh{ font-size:15px; font-weight:600; }
+  .qty{
+    margin-left:auto; font-size:11.5px; color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+
+  .grid{ display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(252px,1fr)); }
+
+  .card{
+    background:var(--surface); border:1px solid var(--edge); border-radius:3px;
+    padding:14px 15px 13px; display:flex; flex-direction:column; gap:7px;
+    box-shadow:0 1px 2px var(--shadow);
+    transition:border-color .18s ease, transform .18s ease;
+  }
+  .card:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .card:hover .path{ opacity:1; }
+  .card-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .name{ font-size:13.5px; font-weight:600; color:var(--text); }
+  .desc{ font-size:13px; color:var(--muted); line-height:1.55; }
+  .path{
+    font-size:11px; color:var(--brass); opacity:.55;
+    transition:opacity .18s ease; letter-spacing:-.01em;
+  }
+
+  .chip{
+    font-size:10.5px; padding:1.5px 6px; border-radius:2px;
+    letter-spacing:.04em; white-space:nowrap; font-weight:600;
+  }
+  .chip.official{ color:var(--patina); border:1px solid var(--patina); }
+  .chip.distilled{ color:var(--brass); border:1px solid var(--brass); }
+  .chip.built{ color:var(--ground); background:var(--brass); border:1px solid var(--brass); }
+
+  .foot{
+    margin-top:44px; padding-top:18px; border-top:1px solid var(--edge);
+    font-size:12.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:8px 20px;
+  }
+  .foot a{ color:var(--brass); text-decoration:none; border-bottom:1px solid transparent; }
+  .foot a:hover, .foot a:focus-visible{ border-bottom-color:var(--brass); }
+  :focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .card{ transition:none; }
+    .card:hover{ transform:none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="head">
+    <div>
+      <div class="eyebrow">riley0108 / Skill</div>
+      <h1 class="title">技能庫<em>.</em>盤點</h1>
+    </div>
+    <p class="lede">
+      27 個 Claude Code skill，依用途分成 7 個分類資料夾。自製與萃取的佔 10 個，
+      其餘 17 個來自 Anthropic 官方 skills。
+    </p>
+
+    <div class="counts">
+      <div class="count"><span class="n">27</span><span class="l">skills</span></div>
+      <div class="count"><span class="n">7</span><span class="l">分類</span></div>
+      <div class="count"><span class="n">10</span><span class="l">自製 · 萃取</span></div>
+      <div class="count"><span class="n">17</span><span class="l">官方</span></div>
+    </div>
+
+    <div class="arch">
+      <span><b>結構</b>：Claude Code 只掃頂層一層，所以真檔放分類資料夾，頂層放同名 symlink 指回去 —</span>
+      <span class="link-demo mono"><span>short-video</span><span class="to">→</span><span>media/short-video</span></span>
+      <span>分類清楚，功能不失。</span>
+    </div>
+  </header>
+
+  <hr class="rule" />
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">documents/</span><span class="zh">文件處理</span><span class="qty mono">4</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">docx</span><span class="chip official">官方</span></div><p class="desc">Word 文件建立、讀取、編輯；目錄、頁碼、追蹤修訂與註解。</p><span class="path mono">→ documents/docx</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">pdf</span><span class="chip official">官方</span></div><p class="desc">PDF 抽取文字表格、合併分割、填表單、掃描檔 OCR。</p><span class="path mono">→ documents/pdf</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">pptx</span><span class="chip official">官方</span></div><p class="desc">簡報建立與編修的通用能力，官方 production 級。</p><span class="path mono">→ documents/pptx</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">xlsx</span><span class="chip official">官方</span></div><p class="desc">試算表建立、清理雜亂資料、公式與圖表，含 csv/tsv。</p><span class="path mono">→ documents/xlsx</span></article>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">presentation/</span><span class="zh">簡報與海報</span><span class="qty mono">3</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">slidev</span><span class="chip distilled">萃取</span></div><p class="desc">用 markdown 寫開發者投影片：程式碼逐行點開、匯出與部署。</p><span class="path mono">→ presentation/slidev</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">pptx-generator</span><span class="chip distilled">萃取</span></div><p class="desc">程式化產 .pptx（內附 MCP server 32 工具），或 AI 生成精美版面。</p><span class="path mono">→ presentation/pptx-generator</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">academic-poster</span><span class="chip distilled">萃取</span></div><p class="desc">學術會議海報：LaTeX 範本、大尺寸設定、版面與送印前置。</p><span class="path mono">→ presentation/academic-poster</span></article>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">media/</span><span class="zh">影音生成</span><span class="qty mono">3</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">short-video</span><span class="chip built">自製</span></div><p class="desc">口播錄音一條龍變 9:16 短影音：逐字稿、字幕、快剪、字卡、配樂。</p><span class="path mono">→ media/short-video</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">video-autopilot</span><span class="chip distilled">萃取</span></div><p class="desc">一句題目到完整發佈套件；含 M1-M102 影片製作避坑大全。</p><span class="path mono">→ media/video-autopilot</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">comfyui</span><span class="chip distilled">萃取</span></div><p class="desc">節點式 AI 生圖與生影片，用 API 程式化跑 workflow。</p><span class="path mono">→ media/comfyui</span></article>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">design/</span><span class="zh">設計與創意</span><span class="qty mono">6</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">frontend-design</span><span class="chip official">官方</span></div><p class="desc">UI 的美學方向與字體排版，讓介面不會做出模板臉。</p><span class="path mono">→ design/frontend-design</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">canvas-design</span><span class="chip official">官方</span></div><p class="desc">以設計方法產出 png / pdf 視覺作品、海報與平面稿。</p><span class="path mono">→ design/canvas-design</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">theme-factory</span><span class="chip official">官方</span></div><p class="desc">10 套現成主題，替簡報、文件、網頁快速套上一致風格。</p><span class="path mono">→ design/theme-factory</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">algorithmic-art</span><span class="chip official">官方</span></div><p class="desc">p5.js 生成藝術，種子隨機與可互動的參數探索。</p><span class="path mono">→ design/algorithmic-art</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">brand-guidelines</span><span class="chip official">官方</span></div><p class="desc">套用 Anthropic 官方品牌色與字體規範到產出物。</p><span class="path mono">→ design/brand-guidelines</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">slack-gif-creator</span><span class="chip official">官方</span></div><p class="desc">做 Slack 用的動畫 GIF，含尺寸限制與驗證工具。</p><span class="path mono">→ design/slack-gif-creator</span></article>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">development/</span><span class="zh">開發</span><span class="qty mono">5</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">supabase</span><span class="chip distilled">萃取</span></div><p class="desc">Postgres、Auth、RLS、Storage、Edge Functions 的實作與踩雷。</p><span class="path mono">→ development/supabase</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">mcp-builder</span><span class="chip official">官方</span></div><p class="desc">建高品質 MCP server，Python（FastMCP）或 TypeScript。</p><span class="path mono">→ development/mcp-builder</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">web-artifacts-builder</span><span class="chip official">官方</span></div><p class="desc">用 React、Tailwind、shadcn/ui 做多元件的複雜網頁 artifact。</p><span class="path mono">→ development/web-artifacts-builder</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">webapp-testing</span><span class="chip official">官方</span></div><p class="desc">用 Playwright 操作本地網頁，驗證行為、截圖與看瀏覽器 log。</p><span class="path mono">→ development/webapp-testing</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">claude-api-ref</span><span class="chip official">官方</span></div><p class="desc">Claude API 與 SDK 多語言參考；內建版的可攜備份，被動觸發。</p><span class="path mono">→ development/claude-api-ref</span></article>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">writing/</span><span class="zh">寫作與溝通</span><span class="qty mono">3</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">danruwu</span><span class="chip distilled">萃取</span></div><p class="desc">用吳淡如的語氣與教學哲學談理財，附節目知識庫。</p><span class="path mono">→ writing/danruwu</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">doc-coauthoring</span><span class="chip official">官方</span></div><p class="desc">共筆文件的流程：提案、技術規格、決策紀錄。</p><span class="path mono">→ writing/doc-coauthoring</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">internal-comms</span><span class="chip official">官方</span></div><p class="desc">內部溝通：狀態回報、主管更新、事故報告、公司電子報。</p><span class="path mono">→ writing/internal-comms</span></article>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <div class="shelf-head">
+      <span class="slug mono">meta/</span><span class="zh">元技能</span><span class="qty mono">3</span>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><span class="name mono">loop-engineering</span><span class="chip distilled">萃取</span></div><p class="desc">驗證迴圈加 budget，讓自動化自己檢查、不亂發、不燒錢。</p><span class="path mono">→ meta/loop-engineering</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">skill-creator</span><span class="chip official">官方</span></div><p class="desc">建立、修改、評測 skill，並優化描述讓觸發更準。</p><span class="path mono">→ meta/skill-creator</span></article>
+      <article class="card"><div class="card-top"><span class="name mono">skills-catalog</span><span class="chip built">自製</span></div><p class="desc">外部 skill 目錄索引：1400 多個現成 skill，要用時再單獨安裝。</p><span class="path mono">→ meta/skills-catalog</span></article>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span><span class="chip official">官方</span> Anthropic skills　<span class="chip distilled">萃取</span> 從 repo 蒸餾　<span class="chip built">自製</span> 從零建立</span>
+    <span>倉庫：<a class="mono" href="https://github.com/riley0108/Skill">github.com/riley0108/Skill</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
